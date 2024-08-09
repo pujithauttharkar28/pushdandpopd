@@ -61,7 +61,7 @@ void load_stack() {
 
 
     if (fscanf(file, "%d\n", &top) != 1) {
-        perror("Failed to read top value");
+        //perror("Failed to read top value");
         fclose(file);
         return;
     }
