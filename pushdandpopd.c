@@ -98,11 +98,27 @@ void pushd(const char *dir) {
 
 void popd() 
 {
-    if (top == 0)
+    if (top == -1)
     {
         printf("popd: stack empty\n");
+       
         return;
     } 
+    
+    if(top == 0)
+    {
+		printf("popd: stack empty\n");
+        free(stack[top]);
+        top = -1;
+        
+        // Clear the stack file
+        FILE *file = fopen(STACK_FILE, "w");
+        if (file == NULL) {
+            perror("Failed to open file for clearing");
+            return;
+        }
+        fclose(file); // Closing the file clears its contents
+	}
     else 
     {
        
